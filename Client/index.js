@@ -7,7 +7,7 @@ let headers = [
   "freight_amount",
 ];
 var data = [];
-const apiDomain = 'https://bill-pdf.onrender.com/' || 'http://localhost:3000'
+const apiDomain = 'https://bill-pdf.onrender.com/' || 'http://localhost:3000/'
 function addRows() {
   var tableBody = document.querySelector("#myTable tbody");
 
@@ -107,7 +107,7 @@ document.querySelector("#addRowBtn").addEventListener("click", function () {
 });
 function submitApi(){
   const submitButton = document.getElementById('submit-button');
-  const apiUrl = apiDomain + '/generate_pdf/October/012';
+  const apiUrl = apiDomain + 'generate_pdf/October/012';
   console.log(apiUrl);
 		submitButton.addEventListener('click', () => {
 			// Send a POST request to the API endpoint with the data in the request body
@@ -141,7 +141,7 @@ document.querySelector("#submit-button").addEventListener("click", () => {
 const downloadBtn = document.getElementById('download-btn');
 downloadBtn.addEventListener('click', () => {
   const apiDomain = 'https://bill-pdf.onrender.com/' || 'http://localhost:3000'
-  const apiUrl = apiDomain + '/download'; // Replace with your API URL
+  const apiUrl = apiDomain + 'download'; // Replace with your API URL
   console.log(apiUrl);
   fetch(apiUrl, { method: 'GET' })
     .then(response => response.blob())

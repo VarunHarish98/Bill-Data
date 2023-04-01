@@ -14,7 +14,7 @@ const headers = [
   { label: "Freight Amount", align: "center" },
 ];
 
-router.post("generate_pdf/:month/:billNo", (req, res) => {
+router.post("/generate_pdf/:month/:billNo", (req, res) => {
   try {
     const doc = new PDFDocument({ size: "A4" });
     //console.log(res)
@@ -35,7 +35,7 @@ router.post("generate_pdf/:month/:billNo", (req, res) => {
           fontSize: 10,
         },
       };
-      doc.pipe(fs.createWriteStream("output.pdf"));
+      doc.pipe(fs.createWriteStream("./output.pdf"));
       writeToPDF(req, doc, table, total);
       let filename = "OP.pdf";
       filename = encodeURIComponent(filename);

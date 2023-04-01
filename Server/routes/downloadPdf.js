@@ -4,8 +4,8 @@ const router = express.Router();
 const app = express();
 
 // Define a route that will send the PDF file to the client
-router.get("download", (req, res) => {
-  const filePath = "output.pdf"; // Replace with the actual file path
+router.get("/download", (req, res) => {
+  const filePath = "./output.pdf"; // Replace with the actual file path
   const fileName = "output.pdf"; // Replace with the actual file name
 
   // Read the file from disk
