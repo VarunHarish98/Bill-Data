@@ -35,7 +35,7 @@ router.post("/generate_pdf/:month/:billNo", (req, res) => {
           fontSize: 10,
         },
       };
-      doc.pipe(fs.createWriteStream("./output.pdf"));
+      doc.pipe(fs.createWriteStream("output.pdf"));
       writeToPDF(req, doc, table, total);
       let filename = "OP.pdf";
       filename = encodeURIComponent(filename);
