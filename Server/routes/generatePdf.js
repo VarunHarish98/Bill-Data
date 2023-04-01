@@ -14,7 +14,7 @@ const headers = [
   { label: "Freight Amount", align: "center" },
 ];
 
-router.post("/generate_pdf/:month/:billNo", (req, res) => {
+router.post("generate_pdf/:month/:billNo", (req, res) => {
   try {
     const doc = new PDFDocument({ size: "A4" });
     //console.log(res)
@@ -41,7 +41,8 @@ router.post("/generate_pdf/:month/:billNo", (req, res) => {
       filename = encodeURIComponent(filename);
       res.setHeader('Content-disposition', 'inline; filename="' + filename + '"');
       res.setHeader('Content-type', 'application/pdf');
-      
+      console.log("Completed")
+      res.end()
     }
   } catch (error) {
     console.log(error)
