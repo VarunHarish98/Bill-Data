@@ -129,13 +129,19 @@ function addRows() {
   destination_input.addEventListener("input", updateData);
   let options = localStorage.getItem('options');
   let dest = localStorage.getItem('options') && typeof(options) === 'string' ? JSON.parse(options) : options;
-  for (let i in dest){
+  for (let i in dest) {
     var option = document.createElement("option");
-  
-  option.text = dest[i];
-  option.value = i + 1; // set the value to the index + 1
-  destination_input.add(option);
+    option.text = dest[i];
+    //option.value = i + 1; // set the value to the index + 1
+    destination_input.add(option);
   }
+  destination_input.addEventListener('change', function() {
+    // get the selected value of the dropdown
+    const selectedValue = destination_input.value;
+    
+    // do something with the selected value
+    console.log(selectedValue);
+  });
   destination_cell.appendChild(destination_input);
 
   var freight_input = document.createElement("input");
@@ -186,7 +192,7 @@ function updateData() {
       dates_input.value,
       lr_input.value,
       bill_input.value,
-      destination_input.value || '',
+      destination_input.value,
       freight_amount_cell.value,
     ]);
   });
