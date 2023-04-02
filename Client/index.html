@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	
+
   <head>
     <title>Data Entry - PDF Bill</title>
     <h1 align="center">SURYA TRANSPORT CORPORATION</h1>
@@ -18,18 +18,30 @@
         </th>
         <th>
           <form>
-            <label for="PDF No.">PDF No.:</label>
+            <label for="pdf_no">PDF No.:</label>
             <input
               type="text"
               id="pdf_no"
               name="pdf_no"
-              placeholder="011 for January"
+			  min="000"
+			  pattern= /[0-9]{3}/
+			  maxlength="3"
+              placeholder="011 for January 23"
               required
             />
           </form>
         </th>
-      </tr>
-    </table>
+		<th>
+			<form>
+				<label for="Year">Year:</label>
+				<input type="text" id="Year" name="Year" maxlength="4" required />
+			</form>
+		</th>
+		<th>New Destination?
+			<button id="dropdown-container">Add to Dropdown</button>
+		</th>
+		</tr>
+		</table>
     <table id="myTable" border="1">
       <thead>
         <tr>
@@ -49,7 +61,7 @@
     <h3 align="center">
       <button id="addRowBtn">Add Row</button>
       <button id="submit-button">Submit</button>
-      <button id="download-btn" disabled>Download PDF</button>
+      <button id="download-btn">Download PDF</button>
     </h3>
     <script src="index.js"></script>
   </body>

@@ -14,7 +14,7 @@ const headers = [
   { label: "Freight Amount", align: "center" },
 ];
 
-router.post("/generate_pdf/:month/:billNo", (req, res) => {
+router.post("/generate_pdf/:month/:year/:billNo", (req, res) => {
   try {
     const doc = new PDFDocument({ size: "A4" });
     //console.log(res)

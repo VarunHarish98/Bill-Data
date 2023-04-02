@@ -28,11 +28,11 @@ function writeToPDF(req, doc, table, total) {
             align: 'left',
             continued: true
         })
-        .text(`STC/CENTURY/22-23/${req.params?.billNo}`, {
+        .text(`STC/CENTURY/${req.params?.year}/${req.params?.billNo}`, {
             align: 'right'
         })
         .moveDown(1)
-        .text(`Below table indicates the transportation of plywood for the month of ${req.params.month} 2023`, {
+        .text(`Below table indicates the transportation of plywood for the month of ${req.params?.month} 2023`, {
             align: 'center'
         });
     doc
@@ -70,7 +70,7 @@ function writeToPDF(req, doc, table, total) {
 
     doc
         .fontSize(11)
-        .text(`Grand Total ${total}/-`, {
+        .text(`Grand Total ${total}.00/-`, {
             align: 'right'
         })
         .fontSize(10)
