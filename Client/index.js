@@ -7,7 +7,7 @@ let headers = [
   "freight_amount",
 ];
 var data = [];
-const apiDomain = 'https://bill-pdf.onrender.com/' || 'http://localhost:3000/'
+const apiDomain = 'https://pdf-bill-server.onrender.com/' || 'http://localhost:3000/'
 function addRows() {
   var tableBody = document.querySelector("#myTable tbody");
 
@@ -105,10 +105,23 @@ function updateData() {
 document.querySelector("#addRowBtn").addEventListener("click", function () {
   addRows();
 });
+function enableButton() {
+  var button = document.getElementById("download-btn");
+  button.disabled = false;
+}
+// function enableSubmitButton() {
+//   if(month && pdf_no){
+//     var submitButton = document.getElementById("submit-button");
+//     submitButton.disabled = false;
+//   }
+// }
 function submitApi(){
+  const month = document.getElementById('Month').value;
+  const pdf_no = document.getElementById("pdf_no").value;
   const submitButton = document.getElementById('submit-button');
-  const apiUrl = apiDomain + 'generate_pdf/October/012';
-  console.log(apiUrl);
+  let uri = `generate_pdf/${month}/${pdf_no}`;
+  const apiUrl = apiDomain + uri;
+  console.log(apiUrl)
 		submitButton.addEventListener('click', () => {
 			// Send a POST request to the API endpoint with the data in the request body
 			fetch(apiUrl, {
@@ -135,12 +148,15 @@ function submitApi(){
 			});
     });
 }
+// enableSubmitButton()
 document.querySelector("#submit-button").addEventListener("click", () => {
   submitApi();
+  enableButton();
 })
+
 const downloadBtn = document.getElementById('download-btn');
 downloadBtn.addEventListener('click', () => {
-  const apiDomain = 'https://bill-pdf.onrender.com/' || 'http://localhost:3000'
+  const apiDomain = 'https://pdf-bill-server.onrender.com/' || 'http://localhost:3000'
   const apiUrl = apiDomain + 'download'; // Replace with your API URL
   console.log(apiUrl);
   fetch(apiUrl, { method: 'GET' })

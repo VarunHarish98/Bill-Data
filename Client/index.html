@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html>
+	
+  <head>
+    <title>Data Entry - PDF Bill</title>
+    <h1 align="center">SURYA TRANSPORT CORPORATION</h1>
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-<head>
-	<title>Dynamic Form Table</title>
-</head>
-
-<body>
-	<table id="myTable" border="1">
-		<thead>
-			<tr>
-				<th>Sl.No</th>
-				<th>Date</th>
-				<th>LR No</th>
-				<th>Bill.No</th>
-				<th>Destination</th>
-				<th>Freight Amount</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Table rows with input fields will be added dynamically using JavaScript -->
-		</tbody>
-	</table>
-	<br>
-	<button id="addRowBtn">Add Row</button>
-	<button id="submit-button">Submit</button>
-	<button id="download-btn">Download PDF</button>
-	<script src="index.js">	</script>
-
-</body>
-
-</html>
+  <body>
+    <table id="headerTable" border="1">
+      <tr>
+        <th>
+          <form>
+            <label for="Month">Month:</label>
+            <input type="text" id="Month" name="Month" required />
+          </form>
+        </th>
+        <th>
+          <form>
+            <label for="PDF No.">PDF No.:</label>
+            <input
+              type="text"
+              id="pdf_no"
+              name="pdf_no"
+              placeholder="011 for January"
+              required
+            />
+          </form>
+        </th>
+      </tr>
+    </table>
+    <table id="myTable" border="1">
+      <thead>
+        <tr>
+          <th>Sl.No</th>
+          <th>Date</th>
+          <th>LR No</th>
+          <th>Bill.No</th>
+          <th>Destination</th>
+          <th>Freight Amount in Rs.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table rows with input fields will be added dynamically using JavaScript -->
+      </tbody>
+    </table>
+    <br />
+    <h3 align="center">
+      <button id="addRowBtn">Add Row</button>
+      <button id="submit-button">Submit</button>
+      <button id="download-btn" disabled>Download PDF</button>
+    </h3>
+    <script src="index.js"></script>
+  </body>
+  
+  </html>
