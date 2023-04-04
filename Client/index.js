@@ -59,15 +59,15 @@ function addRows() {
   dates_cell.appendChild(dates_input);
 
   var lr_input = document.createElement("input");
-  lr_input.type = "number";
+  lr_input.type = "text";
   lr_input.name = "lr[]";
   lr_input.addEventListener("input", updateData);
   lr_no_cell.appendChild(lr_input);
   lr_no_cell.addEventListener("keypress", (e) => {
     const key = e.which || e.keyCode;
-    if ((key < 48 || key > 57)) {
+    if ((key < 47 || key > 57)) {
       // Prevent the default action
-      alert("Input only numbers")
+      alert("Please Input only numbers")
       e.preventDefault();
     }
   })
@@ -79,7 +79,7 @@ function addRows() {
   bill_no_cell.appendChild(bill_input);
   bill_no_cell.addEventListener("keypress", (e) => {
     const key = e.which || e.keyCode;
-    if ((key < 48 || key > 57)) {
+    if ((key < 47 || key > 57)) {
       // Prevent the default action
       alert("Input only numbers")
       e.preventDefault();
