@@ -13,7 +13,7 @@
         <th>
           <form>
             <label for="Month">Month:</label>
-            <input type="text" id="Month" name="Month" required />
+            <input type="text" placeholder="Eg. January" id="Month" name="Month" required />
           </form>
         </th>
         <th>
@@ -26,7 +26,7 @@
 			  min="000"
 			  pattern= /[0-9]{3}/
 			  maxlength="3"
-              placeholder="011 for January 23"
+              placeholder="011 for January '23"
               required
             />
           </form>
@@ -34,7 +34,7 @@
 		<th>
 			<form>
 				<label for="Year">Year:</label>
-				<input type="text" id="Year" name="Year" maxlength="4" required />
+				<input type="text" placeholder = 'Eg. 22-23' id="Year" name="Year" maxlength="5" pattern="[0-9]{2}-[0-9]{2}" required />
 			</form>
 		</th>
 		<th>New Destination?
@@ -61,7 +61,7 @@
     <h3 align="center">
       <button id="addRowBtn">Add Row</button>
       <button id="submit-button">Submit</button>
-      <button id="download-btn">Download PDF</button>
+      <button id="download-btn" disabled>Download PDF</button>
     </h3>
     <script src="index.js"></script>
   </body>

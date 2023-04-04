@@ -6,31 +6,22 @@ let headers = [
   "destination",
   "freight_amount",
 ];
+let resp = false
 var data = [];
 const apiDomain =
   "https://pdf-bill-server.onrender.com/" || "http://localhost:3000/";
 
-  let pdf_no = document.getElementById("pdf_no");
-  pdf_no.addEventListener("keypress", (e) => {
-    const key = e.which || e.keyCode;
-    console.log(e)
-    if ((key < 48 || key > 57)) {
-      // Prevent the default action
-      alert("Input only 3 digit numbers")
-      e.preventDefault();
+let pdf_no = document.getElementById("pdf_no");
+pdf_no.addEventListener("keypress", (e) => {
+  const key = e.which || e.keyCode;
+  console.log(e)
+  if ((key < 48 || key > 57)) {
+    // Prevent the default action
+    alert("Input only 3 digit numbers")
+    e.preventDefault();
   }
 })
 const regex = /[0-9]{2}-[a-zA-Z]{3}-[0-9]{2}/gmi;
-let year = document.getElementById("Year");
-year.addEventListener("keypress", (e) => {
-  const key = e.which || e.keyCode;
-    console.log(e)
-    if ((key < 48 || key > 57)) {
-      // Prevent the default action
-      alert("Input only years")
-      e.preventDefault();
-    }
-})
 
 function addRows() {
   var tableBody = document.querySelector("#myTable tbody");
@@ -57,7 +48,7 @@ function addRows() {
       // Prevent the default action
       alert("Input only numbers")
       e.preventDefault();
-  }
+    }
   })
 
   var dates_input = document.createElement("input");
@@ -78,7 +69,7 @@ function addRows() {
       // Prevent the default action
       alert("Input only numbers")
       e.preventDefault();
-  }
+    }
   })
 
   var bill_input = document.createElement("input");
@@ -92,23 +83,23 @@ function addRows() {
       // Prevent the default action
       alert("Input only numbers")
       e.preventDefault();
-  }
+    }
   })
   function addOption() {
     // Retrieve existing options from local storage or create an empty array if no options exist yet
     console.log("dfsdf")
     const options = JSON.parse(localStorage.getItem("options")) || [];
-  
+
     // Prompt user for option to add
     const newOption = prompt("Enter new option:");
-  
+
     // Add new option to options array
     options.push(newOption);
-  
+
     // Save updated options array to local storage
     localStorage.setItem("options", JSON.stringify(options));
     console.log(localStorage)
-  
+
     // Create new option element and add to dropdown
     const optionElement = document.createElement("option");
     optionElement.value = newOption;
@@ -119,7 +110,7 @@ function addRows() {
     console.log("bbbbbbbbbbbb")
     addOption();
   });
-  
+
   var destination_input = document.createElement("select");
   destination_input.text = "option";
   destination_input.name = "dest[]";
@@ -128,17 +119,17 @@ function addRows() {
   // });
   destination_input.addEventListener("input", updateData);
   let options = localStorage.getItem('options');
-  let dest = localStorage.getItem('options') && typeof(options) === 'string' ? JSON.parse(options) : options;
+  let dest = localStorage.getItem('options') && typeof (options) === 'string' ? JSON.parse(options) : options;
   for (let i in dest) {
     var option = document.createElement("option");
     option.text = dest[i];
     //option.value = i + 1; // set the value to the index + 1
     destination_input.add(option);
   }
-  destination_input.addEventListener('change', function() {
+  destination_input.addEventListener('change', function () {
     // get the selected value of the dropdown
     const selectedValue = destination_input.value;
-    
+
     // do something with the selected value
     console.log(selectedValue);
   });
@@ -206,11 +197,11 @@ document.querySelector("#addRowBtn").addEventListener("click", function () {
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", () => {
   const month = document.getElementById("Month").value;
-const pdf_no = document.getElementById("pdf_no").value;
-const year = document.getElementById("Year").value;
-let uri = `generate_pdf/${month}/${year}/${pdf_no}`;
-const apiUrl = apiDomain + uri;
-console.log(apiUrl);
+  const pdf_no = document.getElementById("pdf_no").value;
+  const year = document.getElementById("Year").value;
+  let uri = `generate_pdf/${month}/${year}/${pdf_no}`;
+  const apiUrl = apiDomain + uri;
+  console.log(apiUrl);
   // Send a POST request to the API endpoint with the data in the request body
   fetch(apiUrl, {
     method: "POST",
@@ -231,11 +222,20 @@ console.log(apiUrl);
     })
     .then((data) => {
       console.log("API response:", data);
+      resp = true
+      alert("Response saved into PDF successfully!")
+      enableButton();
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 });
+function enableButton() {
+  if (resp) {
+    var myButton = document.getElementById("download-btn");
+    myButton.disabled = false;
+  }
+}
 
 const downloadBtn = document.getElementById("download-btn");
 downloadBtn.addEventListener("click", () => {

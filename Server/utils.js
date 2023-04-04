@@ -37,6 +37,7 @@ function writeToPDF(req, doc, table, total) {
         });
     doc
         .moveDown(3)
+        doc.fontSize(10)
         .table(table, {
             //columnsSize: [30, 50, 60, 50, 100, 70],
             width: 450,
@@ -46,24 +47,27 @@ function writeToPDF(req, doc, table, total) {
           
                 // first line 
                 if(indexColumn === 0){
-                doc
+                doc                
+                  .fontSize(7)
                   .lineWidth(.5)
                   .moveTo(x, y - height)
                   .lineTo(x, y + height)
                   .stroke();  
                 doc
-                  .moveTo(72,230)
-                  .lineTo(522, 230)
+                  .fontSize(7)
+                  .moveTo(72,y - height -1)
+                  .lineTo(522, y - height -1)
                   .stroke();
                 }
           
                 doc
+                .fontSize(7)
                 .lineWidth(.5)
                 .moveTo(x + width, y - height)
                 .lineTo(x + width, y + height)
                 .stroke();
                   
-                doc.fontSize(10);
+                //doc.fontSize(10);
             }
               
         });
