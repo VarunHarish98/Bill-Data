@@ -56,7 +56,7 @@ function writeToPDF(req, doc, table, total) {
                 doc
                   .fontSize(7)
                   .moveTo(72,y - height -1)
-                  .lineTo(522, y - height -1)
+                  .lineTo(552, y - height -1)
                   .stroke();
                 }
           
