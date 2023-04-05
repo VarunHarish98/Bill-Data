@@ -37,34 +37,31 @@ function writeToPDF(req, doc, table, total) {
         });
     doc
         .moveDown(3)
-        doc.fontSize(10)
         .table(table, {
-            //columnsSize: [30, 50, 60, 50, 100, 70],
+            prepareHeader: () => doc.font("Helvetica-Bold").fontSize(9),
+            columnsSize: [30, 60, 80, 50, 160, 100],
             width: 480,
             prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
 
                 const {x = 0, y = 0, width, height} = rectCell;
-          
+                doc.font("Helvetica").fontSize(9);
                 // first line 
                 if(indexColumn === 0){
-                doc                
-                  .fontSize(7)
+                doc       
                   .lineWidth(.5)
                   .moveTo(x, y - height)
                   .lineTo(x, y + height)
                   .stroke();  
                 doc
-                  .fontSize(7)
                   .moveTo(72,y - height -1)
                   .lineTo(552, y - height -1)
                   .stroke();
                 }
           
                 doc
-                .fontSize(7)
                 .lineWidth(.5)
-                .moveTo(x + width, y - height)
-                .lineTo(x + width, y + height)
+                .moveTo(x + width, y - height -1)
+                .lineTo(x + width, y + height -1)
                 .stroke();
                   
                 //doc.fontSize(10);
@@ -77,6 +74,7 @@ function writeToPDF(req, doc, table, total) {
         .text(`Grand Total ${total}.00/-`, {
             align: 'right'
         })
+        .moveDown(1)
         .fontSize(10)
         .text(`(Rupees: ${numWords(total)?.charAt(0)?.toUpperCase() + numWords(total).slice(1)} only)`, {
             align: 'left', 

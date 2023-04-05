@@ -203,7 +203,7 @@ function updateData() {
       lr_input.value,
       bill_input.value,
       destination_input.value,
-      freight_amount_cell.value,
+      `${freight_amount_cell.value}.00`,
     ]);
   });
   console.log(data);
