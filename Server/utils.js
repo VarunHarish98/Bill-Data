@@ -40,7 +40,7 @@ function writeToPDF(req, doc, table, total) {
         doc.fontSize(10)
         .table(table, {
             //columnsSize: [30, 50, 60, 50, 100, 70],
-            width: 450,
+            width: 480,
             prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
 
                 const {x = 0, y = 0, width, height} = rectCell;

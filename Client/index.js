@@ -37,7 +37,9 @@ function addRows() {
   var actionCell = document.createElement("td");
 
   var sl_input = document.createElement("input");
-  sl_input.type = "text";
+  console.log(tableBody.rows)
+  sl_input.value = tableBody.rows.length + 1;
+  console.log(sl_input.value)
   sl_input.name = "sl[]";
   sl_input.maxLength = 3
   sl_input.addEventListener("input", updateData);
@@ -52,11 +54,13 @@ function addRows() {
   })
 
   var dates_input = document.createElement("input");
-  dates_input.type = "text";
+  dates_input.type = "date";
   dates_input.name = "dates[]";
   dates_input.placeholder = "Eg. 23-Jan-23"
   dates_input.addEventListener("input", updateData);
   dates_cell.appendChild(dates_input);
+
+  
 
   var lr_input = document.createElement("input");
   lr_input.type = "text";
@@ -148,8 +152,19 @@ function addRows() {
   removeBtn.addEventListener("click", function () {
     row.remove();
     updateData();
+    //to-do updateSerialNumbers(removeBtn)
   });
   actionCell.appendChild(removeBtn);
+
+  /*TO-Do
+  */
+  // function updateSerialNumbers(table) {
+  //   //var rows = table.rows;
+  //   console.log("-----",table)
+  //   for (var i = 1; i < table.length; i++) { // start at index 1 to skip the header row
+  //     table[i].cells[0].value = i; // update the serial number cell to the new value
+  //   }
+  // }
 
   row.appendChild(sl_no_cell);
   row.appendChild(dates_cell);
@@ -177,10 +192,14 @@ function updateData() {
     var bill_input = row.querySelector('input[name="bill[]"]');
     var destination_input = row.querySelector('select[name="dest[]"]');
     var freight_amount_cell = row.querySelector('input[name="freight[]"]');
+    
+      let dateVal = storeDate(dates_input)
+      console.log(dateVal)
+    
 
     data.push([
       sl_input.value,
-      dates_input.value,
+      dateVal,
       lr_input.value,
       bill_input.value,
       destination_input.value,
@@ -192,6 +211,25 @@ function updateData() {
 document.querySelector("#addRowBtn").addEventListener("click", function () {
   addRows();
 });
+
+function storeDate(dates_input) {
+  const selectedDate = dates_input.value;
+  console.log(selectedDate)
+  const date = new Date(selectedDate);
+const year = date.getFullYear();
+let month = date.toLocaleString('default', { month: 'short' });
+console.log(month)
+let day = date.getDate();
+day = day < 10 ? "0" + day : day;
+let dates = `${day}-${month}-${year}`
+console.log(dates)
+return dates;// You can store the formatted date in a database or use it for other purposes
+}
+
+
+// function formatDate(dateString) {
+//  // Return the date in the format "YYYY-MM-DD"
+// }
 
 
 const submitButton = document.getElementById("submit-button");
